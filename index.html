@@ -2,9 +2,9 @@
 <html lang="zh-Hant">
 <head>
     <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>背景影片示例</title>
     <style>
-        /* 讓影片全螢幕覆蓋 */
         body, html {
             margin: 0;
             padding: 0;
@@ -52,13 +52,14 @@
             top: 20px;
             right: 20px;
             z-index: 2;
-            padding: 10px 15px;
+            padding: 12px 18px;
             background: rgba(0, 0, 0, 0.5);
             color: white;
             border: none;
-            font-size: 1em;
+            font-size: 1.1em;
             cursor: pointer;
-            border-radius: 8px;
+            border-radius: 10px;
+            backdrop-filter: blur(4px);
         }
 
         .bottom-left {
@@ -87,7 +88,6 @@
         .bottom-left-text {
             display: flex;
             flex-direction: column;
-            font-family: "Arial", "Helvetica", sans-serif;
         }
 
         .bottom-left-text .title {
@@ -100,6 +100,47 @@
             font-weight: 300;
             font-size: 1em;
             margin: 5px 0 0 0;
+        }
+
+        @media (max-width: 768px) {
+            .content {
+                top: 20px;
+                left: 20px;
+            }
+
+            .brand {
+                font-size: 1em;
+            }
+
+            .main-text {
+                font-size: 2em;
+            }
+
+            #soundToggle {
+                top: 15px;
+                right: 15px;
+                padding: 10px 14px;
+                font-size: 1em;
+            }
+
+            .bottom-left {
+                bottom: 20px;
+                left: 20px;
+                gap: 15px;
+            }
+
+            .item img {
+                width: 70px;
+                margin-right: 10px;
+            }
+
+            .bottom-left-text .title {
+                font-size: 1.2em;
+            }
+
+            .bottom-left-text .subtitle {
+                font-size: 0.9em;
+            }
         }
     </style>
 </head>
