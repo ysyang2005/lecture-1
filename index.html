@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8" />
+    <title>背景影片示例</title>
+    <style>
+        /* 讓影片全螢幕覆蓋 */
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden;
+            font-family: "Arial", "Helvetica", sans-serif;
+        }
+
+        .video-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+        }
+
+        .content {
+            position: absolute;
+            top: 40px;
+            left: 40px;
+            z-index: 1;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .brand {
+            font-size: 1.2em;
+            font-weight: 300;
+            margin: 0;
+            opacity: 0.8;
+        }
+
+        .main-text {
+            font-size: 3em;
+            font-weight: bold;
+            margin: 10px 0 0 0;
+        }
+
+        #soundToggle {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            z-index: 2;
+            padding: 10px 15px;
+            background: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            font-size: 1em;
+            cursor: pointer;
+            border-radius: 8px;
+        }
+
+        .bottom-left {
+            position: absolute;
+            bottom: 40px;
+            left: 40px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            z-index: 1;
+            color: white;
+        }
+
+        .item {
+            display: flex;
+            align-items: center;
+        }
+
+        .item img {
+            width: 100px;
+            height: auto;
+            border-radius: 8px;
+            margin-right: 15px;
+        }
+
+        .bottom-left-text {
+            display: flex;
+            flex-direction: column;
+            font-family: "Arial", "Helvetica", sans-serif;
+        }
+
+        .bottom-left-text .title {
+            font-weight: bold;
+            font-size: 1.5em;
+            margin: 0;
+        }
+
+        .bottom-left-text .subtitle {
+            font-weight: 300;
+            font-size: 1em;
+            margin: 5px 0 0 0;
+        }
+    </style>
+</head>
+<body>
+
+<video id="bgVideo" class="video-bg" autoplay muted loop playsinline>
+    <source src="1.mp4" type="video/mp4" />
+    您的瀏覽器不支援影片標籤。
+</video>
+
+<button id="soundToggle">🔇 開聲音</button>
+
+<div class="content">
+    <p class="brand">GBADA&amp;靜心茶舍</p>
+    <h1 class="main-text">在石像中<br />遇見佛性</h1>
+</div>
+
+<div class="bottom-left">
+    <div class="item">
+        <a href="https://www.flaticon.com/free-icons/buddhism" title="buddhism icons" target="_blank">
+            <img src="1.jpg" alt="石窟圖片" />
+        </a>
+        <div class="bottom-left-text">
+            <p class="title">石窟之緣起</p>
+            <p class="subtitle">石窟禮佛是如何興起的</p>
+        </div>
+    </div>
+
+    <div class="item">
+        <a href="https://www.flaticon.com/free-icons/buddhism" title="buddhism icons" target="_blank">
+            <img src="2.jpg" alt="佛國圖片" />
+        </a>
+        <div class="bottom-left-text">
+            <p class="title">一窟一世界</p>
+            <p class="subtitle">這是一個怎樣的佛國世界</p>
+        </div>
+    </div>
+
+    <div class="item">
+        <a href="https://www.flaticon.com/free-icons/buddhism" title="buddhism icons" target="_blank">
+            <img src="3.jpg" alt="佛像圖片" />
+        </a>
+        <div class="bottom-left-text">
+            <p class="title">佛像之作用</p>
+            <p class="subtitle">佛是開悟了的我</p>
+        </div>
+    </div>
+</div>
+
+<script>
+const video = document.getElementById('bgVideo');
+const button = document.getElementById('soundToggle');
+
+button.addEventListener('click', function () {
+    if (video.muted) {
+        video.muted = false;
+        button.textContent = '🔊 靜音';
+    } else {
+        video.muted = true;
+        button.textContent = '🔇 開聲音';
+    }
+});
+</script>
+
+</body>
+</html>
