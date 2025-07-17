@@ -4,7 +4,6 @@
     <meta charset="UTF-8" />
     <title>背景影片示例</title>
     <style>
-        /* 讓影片全螢幕覆蓋 */
         body, html {
             margin: 0;
             padding: 0;
@@ -87,7 +86,6 @@
         .bottom-left-text {
             display: flex;
             flex-direction: column;
-            font-family: "Arial", "Helvetica", sans-serif;
         }
 
         .bottom-left-text .title {
@@ -100,6 +98,44 @@
             font-weight: 300;
             font-size: 1em;
             margin: 5px 0 0 0;
+        }
+
+        /* 手機適配：文字與圖片放大 */
+        @media (max-width: 768px) {
+            .brand {
+                font-size: 2em;
+            }
+
+            .main-text {
+                font-size: 4em;
+            }
+
+            #soundToggle {
+                font-size: 1.2em;
+                padding: 12px 18px;
+            }
+
+            .item img {
+                width: 130px;
+            }
+
+            .bottom-left-text .title {
+                font-size: 2em;
+            }
+
+            .bottom-left-text .subtitle {
+                font-size: 1.3em;
+            }
+
+            .content {
+                top: 30px;
+                left: 20px;
+            }
+
+            .bottom-left {
+                bottom: 30px;
+                left: 20px;
+            }
         }
     </style>
 </head>
