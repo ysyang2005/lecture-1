@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>背景影片手機版優化</title>
+<title>背景影片手機優化</title>
 <style>
     html, body {
         margin: 0; padding: 0; height: 100%; overflow: hidden;
@@ -17,27 +17,32 @@
         object-fit: cover;
         z-index: -1;
     }
+    .overlay {
+        position: relative;
+        z-index: 1;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        padding: 40px;
+        box-sizing: border-box;
+        color: white;
+    }
     #soundToggle {
         position: absolute;
         top: 20px; right: 20px;
-        z-index: 10;
-        padding: 10px 15px;
+        z-index: 2;
+        padding: 12px 18px;
         background: rgba(0, 0, 0, 0.5);
         color: white;
         border: none;
-        font-size: 1.2em;
-        border-radius: 8px;
+        font-size: 1.4em;
+        border-radius: 10px;
         cursor: pointer;
     }
-    .content {
-        position: absolute;
-        top: 40px;
-        left: 40px;
-        z-index: 1;
-        color: white;
-    }
     .brand {
-        font-size: 1.8em;
+        font-size: 2.2em;
         font-weight: 300;
         margin: 0;
         opacity: 0.9;
@@ -45,47 +50,38 @@
     .main-text {
         font-size: 4em;
         font-weight: bold;
-        margin: 10px 0 0 0;
+        margin: 20px 0 0 0;
     }
     .bottom-left {
-        position: absolute;
-        bottom: 40px;
-        left: 40px;
         display: flex;
         flex-direction: column;
-        gap: 20px;
-        z-index: 1;
-        color: white;
+        gap: 25px;
     }
     .bottom-item {
         display: flex;
         align-items: center;
     }
     .bottom-item img {
-        width: 90px;
+        width: 100px;
         height: auto;
-        border-radius: 8px;
+        border-radius: 10px;
         margin-right: 15px;
-    }
-    .bottom-left-text {
-        display: flex;
-        flex-direction: column;
     }
     .bottom-left-text .title {
         font-weight: bold;
-        font-size: 1.6em;
+        font-size: 2em;
         margin: 0;
     }
     .bottom-left-text .subtitle {
         font-weight: 300;
-        font-size: 1.2em;
-        margin: 5px 0 0 0;
+        font-size: 1.4em;
+        margin: 6px 0 0 0;
     }
     @media (max-width: 768px) {
-        .brand { font-size: 2em; }
-        .main-text { font-size: 3.5em; }
-        .bottom-left-text .title { font-size: 1.8em; }
-        .bottom-left-text .subtitle { font-size: 1.4em; }
+        .brand { font-size: 2.5em; }
+        .main-text { font-size: 3.2em; }
+        .bottom-left-text .title { font-size: 2.2em; }
+        .bottom-left-text .subtitle { font-size: 1.5em; }
     }
 </style>
 </head>
@@ -98,31 +94,32 @@
 
 <button id="soundToggle">🔇 開聲音</button>
 
-<div class="content">
-    <p class="brand">GBADA＆靜心茶社</p>
-    <h1 class="main-text">在石像中<br>遇見佛性</h1>
-</div>
-
-<div class="bottom-left">
-    <div class="bottom-item">
-        <img src="1.jpg" alt="石窟圖片">
-        <div class="bottom-left-text">
-            <p class="title">石窟之緣起</p>
-            <p class="subtitle">石窟禮佛是如何興起的</p>
-        </div>
+<div class="overlay">
+    <div class="content">
+        <p class="brand">GBADA＆靜心茶社</p>
+        <h1 class="main-text">在石像中<br>遇見佛性</h1>
     </div>
-    <div class="bottom-item">
-        <img src="2.jpg" alt="一窟一世界">
-        <div class="bottom-left-text">
-            <p class="title">一窟一世界</p>
-            <p class="subtitle">這是一個怎樣的佛國世界</p>
+    <div class="bottom-left">
+        <div class="bottom-item">
+            <img src="1.jpg" alt="石窟圖片">
+            <div class="bottom-left-text">
+                <p class="title">石窟之緣起</p>
+                <p class="subtitle">石窟禮佛是如何興起的</p>
+            </div>
         </div>
-    </div>
-    <div class="bottom-item">
-        <img src="3.jpg" alt="佛像之作用">
-        <div class="bottom-left-text">
-            <p class="title">佛像之作用</p>
-            <p class="subtitle">佛是開悟了的我</p>
+        <div class="bottom-item">
+            <img src="2.jpg" alt="一窟一世界">
+            <div class="bottom-left-text">
+                <p class="title">一窟一世界</p>
+                <p class="subtitle">這是一個怎樣的佛國世界</p>
+            </div>
+        </div>
+        <div class="bottom-item">
+            <img src="3.jpg" alt="佛像之作用">
+            <div class="bottom-left-text">
+                <p class="title">佛像之作用</p>
+                <p class="subtitle">佛是開悟了的我</p>
+            </div>
         </div>
     </div>
 </div>
@@ -131,8 +128,6 @@
 const video = document.getElementById('bgVideo');
 const button = document.getElementById('soundToggle');
 
-// 強制影片播放
-video.muted = true;
 video.play().catch(e => console.log('影片自動播放被阻擋', e));
 
 button.addEventListener('click', function() {
