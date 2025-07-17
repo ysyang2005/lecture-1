@@ -2,17 +2,15 @@
 <html lang="zh-Hant">
 <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
     <title>背景影片示例</title>
     <style>
-        /* 全域設定 */
+        /* 讓影片全螢幕覆蓋 */
         body, html {
             margin: 0;
             padding: 0;
             height: 100%;
             overflow: hidden;
             font-family: "Arial", "Helvetica", sans-serif;
-            background: #000;
         }
 
         .video-bg {
@@ -23,7 +21,6 @@
             height: 100%;
             object-fit: cover;
             z-index: -1;
-            filter: brightness(0.75);
         }
 
         .content {
@@ -35,22 +32,19 @@
             display: flex;
             flex-direction: column;
             align-items: flex-start;
-            text-shadow: 1px 1px 4px rgba(0,0,0,0.7);
-            max-width: 90vw;
         }
 
         .brand {
             font-size: 1.2em;
             font-weight: 300;
             margin: 0;
-            opacity: 0.85;
+            opacity: 0.8;
         }
 
         .main-text {
             font-size: 3em;
             font-weight: bold;
             margin: 10px 0 0 0;
-            line-height: 1.1;
         }
 
         #soundToggle {
@@ -58,19 +52,13 @@
             top: 20px;
             right: 20px;
             z-index: 2;
-            padding: 12px 18px;
-            background: rgba(0, 0, 0, 0.6);
+            padding: 10px 15px;
+            background: rgba(0, 0, 0, 0.5);
             color: white;
             border: none;
-            font-size: 1.1em;
+            font-size: 1em;
             cursor: pointer;
             border-radius: 8px;
-            box-shadow: 0 0 8px rgba(0,0,0,0.3);
-            transition: background 0.3s ease;
-        }
-
-        #soundToggle:hover {
-            background: rgba(0,0,0,0.8);
         }
 
         .bottom-left {
@@ -82,8 +70,6 @@
             gap: 20px;
             z-index: 1;
             color: white;
-            max-width: 90vw;
-            text-shadow: 1px 1px 3px rgba(0,0,0,0.7);
         }
 
         .item {
@@ -96,13 +82,6 @@
             height: auto;
             border-radius: 8px;
             margin-right: 15px;
-            flex-shrink: 0;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.5);
-            transition: transform 0.3s ease;
-        }
-
-        .item img:hover {
-            transform: scale(1.05);
         }
 
         .bottom-left-text {
@@ -121,52 +100,6 @@
             font-weight: 300;
             font-size: 1em;
             margin: 5px 0 0 0;
-        }
-
-        /* 手機響應式調整 */
-        @media (max-width: 600px) {
-            .content {
-                top: 20px;
-                left: 20px;
-                max-width: 95vw;
-            }
-
-            .brand {
-                font-size: 1em;
-            }
-
-            .main-text {
-                font-size: 2em;
-                margin-top: 5px;
-            }
-
-            #soundToggle {
-                top: 15px;
-                right: 15px;
-                padding: 10px 14px;
-                font-size: 1em;
-                border-radius: 6px;
-            }
-
-            .bottom-left {
-                bottom: 20px;
-                left: 20px;
-                max-width: 95vw;
-                gap: 15px;
-            }
-
-            .item img {
-                width: 70px;
-                margin-right: 12px;
-            }
-
-            .bottom-left-text .title {
-                font-size: 1.2em;
-            }
-
-            .bottom-left-text .subtitle {
-                font-size: 0.9em;
-            }
         }
     </style>
 </head>
