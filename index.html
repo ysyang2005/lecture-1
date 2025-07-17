@@ -1,125 +1,217 @@
 <!DOCTYPE html>
 <html lang="zh-Hant">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>背景影片手機優化</title>
-<style>
-    html, body {
-        margin: 0; padding: 0; height: 100%; overflow: hidden;
-        font-family: Arial, Helvetica, sans-serif;
-        background: black;
-    }
-    .video-bg {
-        position: fixed;
-        top: 0; left: 0;
-        width: 100vw; height: 100vh;
-        object-fit: cover;
-        z-index: -1;
-    }
-    .overlay {
-        position: relative;
-        z-index: 1;
-        width: 100%;
-        height: 100%;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        padding: 40px;
-        box-sizing: border-box;
-        color: white;
-    }
-    #soundToggle {
-        position: absolute;
-        top: 20px; right: 20px;
-        z-index: 2;
-        padding: 12px 18px;
-        background: rgba(0, 0, 0, 0.5);
-        color: white;
-        border: none;
-        font-size: 1.4em;
-        border-radius: 10px;
-        cursor: pointer;
-    }
-    .brand {
-        font-size: 2.2em;
-        font-weight: 300;
-        margin: 0;
-        opacity: 0.9;
-    }
-    .main-text {
-        font-size: 4em;
-        font-weight: bold;
-        margin: 20px 0 0 0;
-    }
-    .bottom-left {
-        display: flex;
-        flex-direction: column;
-        gap: 25px;
-    }
-    .bottom-item {
-        display: flex;
-        align-items: center;
-    }
-    .bottom-item img {
-        width: 100px;
-        height: auto;
-        border-radius: 10px;
-        margin-right: 15px;
-    }
-    .bottom-left-text .title {
-        font-weight: bold;
-        font-size: 2em;
-        margin: 0;
-    }
-    .bottom-left-text .subtitle {
-        font-weight: 300;
-        font-size: 1.4em;
-        margin: 6px 0 0 0;
-    }
-    @media (max-width: 768px) {
-        .brand { font-size: 2.5em; }
-        .main-text { font-size: 3.2em; }
-        .bottom-left-text .title { font-size: 2.2em; }
-        .bottom-left-text .subtitle { font-size: 1.5em; }
-    }
-</style>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <title>背景影片示例</title>
+    <style>
+        /* 全域設定 */
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden;
+            font-family: "Arial", "Helvetica", sans-serif;
+            background: #000;
+        }
+
+        .video-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+            filter: brightness(0.75);
+        }
+
+        .content {
+            position: absolute;
+            top: 40px;
+            left: 40px;
+            z-index: 1;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            text-shadow: 1px 1px 4px rgba(0,0,0,0.7);
+            max-width: 90vw;
+        }
+
+        .brand {
+            font-size: 1.2em;
+            font-weight: 300;
+            margin: 0;
+            opacity: 0.85;
+        }
+
+        .main-text {
+            font-size: 3em;
+            font-weight: bold;
+            margin: 10px 0 0 0;
+            line-height: 1.1;
+        }
+
+        #soundToggle {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            z-index: 2;
+            padding: 12px 18px;
+            background: rgba(0, 0, 0, 0.6);
+            color: white;
+            border: none;
+            font-size: 1.1em;
+            cursor: pointer;
+            border-radius: 8px;
+            box-shadow: 0 0 8px rgba(0,0,0,0.3);
+            transition: background 0.3s ease;
+        }
+
+        #soundToggle:hover {
+            background: rgba(0,0,0,0.8);
+        }
+
+        .bottom-left {
+            position: absolute;
+            bottom: 40px;
+            left: 40px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            z-index: 1;
+            color: white;
+            max-width: 90vw;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.7);
+        }
+
+        .item {
+            display: flex;
+            align-items: center;
+        }
+
+        .item img {
+            width: 100px;
+            height: auto;
+            border-radius: 8px;
+            margin-right: 15px;
+            flex-shrink: 0;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.5);
+            transition: transform 0.3s ease;
+        }
+
+        .item img:hover {
+            transform: scale(1.05);
+        }
+
+        .bottom-left-text {
+            display: flex;
+            flex-direction: column;
+            font-family: "Arial", "Helvetica", sans-serif;
+        }
+
+        .bottom-left-text .title {
+            font-weight: bold;
+            font-size: 1.5em;
+            margin: 0;
+        }
+
+        .bottom-left-text .subtitle {
+            font-weight: 300;
+            font-size: 1em;
+            margin: 5px 0 0 0;
+        }
+
+        /* 手機響應式調整 */
+        @media (max-width: 600px) {
+            .content {
+                top: 20px;
+                left: 20px;
+                max-width: 95vw;
+            }
+
+            .brand {
+                font-size: 1em;
+            }
+
+            .main-text {
+                font-size: 2em;
+                margin-top: 5px;
+            }
+
+            #soundToggle {
+                top: 15px;
+                right: 15px;
+                padding: 10px 14px;
+                font-size: 1em;
+                border-radius: 6px;
+            }
+
+            .bottom-left {
+                bottom: 20px;
+                left: 20px;
+                max-width: 95vw;
+                gap: 15px;
+            }
+
+            .item img {
+                width: 70px;
+                margin-right: 12px;
+            }
+
+            .bottom-left-text .title {
+                font-size: 1.2em;
+            }
+
+            .bottom-left-text .subtitle {
+                font-size: 0.9em;
+            }
+        }
+    </style>
 </head>
 <body>
 
 <video id="bgVideo" class="video-bg" autoplay muted loop playsinline>
-    <source src="1.mp4" type="video/mp4">
+    <source src="1.mp4" type="video/mp4" />
     您的瀏覽器不支援影片標籤。
 </video>
 
 <button id="soundToggle">🔇 開聲音</button>
 
-<div class="overlay">
-    <div class="content">
-        <p class="brand">GBADA＆靜心茶社</p>
-        <h1 class="main-text">在石像中<br>遇見佛性</h1>
+<div class="content">
+    <p class="brand">GBADA&amp;靜心茶社</p>
+    <h1 class="main-text">在石像中<br />遇見佛性</h1>
+</div>
+
+<div class="bottom-left">
+    <div class="item">
+        <a href="https://www.flaticon.com/free-icons/buddhism" title="buddhism icons" target="_blank">
+            <img src="1.jpg" alt="石窟圖片" />
+        </a>
+        <div class="bottom-left-text">
+            <p class="title">石窟之緣起</p>
+            <p class="subtitle">石窟禮佛是如何興起的</p>
+        </div>
     </div>
-    <div class="bottom-left">
-        <div class="bottom-item">
-            <img src="1.jpg" alt="石窟圖片">
-            <div class="bottom-left-text">
-                <p class="title">石窟之緣起</p>
-                <p class="subtitle">石窟禮佛是如何興起的</p>
-            </div>
+
+    <div class="item">
+        <a href="https://www.flaticon.com/free-icons/buddhism" title="buddhism icons" target="_blank">
+            <img src="2.jpg" alt="佛國圖片" />
+        </a>
+        <div class="bottom-left-text">
+            <p class="title">一窟一世界</p>
+            <p class="subtitle">這是一個怎樣的佛國世界</p>
         </div>
-        <div class="bottom-item">
-            <img src="2.jpg" alt="一窟一世界">
-            <div class="bottom-left-text">
-                <p class="title">一窟一世界</p>
-                <p class="subtitle">這是一個怎樣的佛國世界</p>
-            </div>
-        </div>
-        <div class="bottom-item">
-            <img src="3.jpg" alt="佛像之作用">
-            <div class="bottom-left-text">
-                <p class="title">佛像之作用</p>
-                <p class="subtitle">佛是開悟了的我</p>
-            </div>
+    </div>
+
+    <div class="item">
+        <a href="https://www.flaticon.com/free-icons/buddhism" title="buddhism icons" target="_blank">
+            <img src="3.jpg" alt="佛像圖片" />
+        </a>
+        <div class="bottom-left-text">
+            <p class="title">佛像之作用</p>
+            <p class="subtitle">佛是開悟了的我</p>
         </div>
     </div>
 </div>
@@ -128,9 +220,7 @@
 const video = document.getElementById('bgVideo');
 const button = document.getElementById('soundToggle');
 
-video.play().catch(e => console.log('影片自動播放被阻擋', e));
-
-button.addEventListener('click', function() {
+button.addEventListener('click', function () {
     if (video.muted) {
         video.muted = false;
         button.textContent = '🔊 靜音';
